@@ -115,8 +115,8 @@ namespace DiaRebootBlocker
         {
             checkTimer.Start();
 
-            var computerInfo = new ComputerInfo();
-            eventLog.WriteEntry("Starting on " + computerInfo.OSFullName);
+            // TODO: Determine the Windows edition
+            //var computerInfo = new ComputerInfo();
 
             if (!UpdateHours(true))
             {
@@ -126,7 +126,6 @@ namespace DiaRebootBlocker
 
         protected override void OnStop()
         {
-            eventLog.WriteEntry("Stopping");
             checkTimer.Stop();
         }
     }
