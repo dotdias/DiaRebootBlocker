@@ -57,7 +57,7 @@ namespace DiaRebootBlocker
                 end = (int)key.GetValue("ActiveHoursEnd");
             }
 
-            var newStart = (DateTime.Now.Hour - 2 + 24) % 24;
+            var newStart = (DateTime.Now.Hour - 1 + 24) % 24;
             var newEnd = (newStart + hourLimitHome) % 24;
 
             string msg;
@@ -78,6 +78,10 @@ namespace DiaRebootBlocker
 
                 key.SetValue("ActiveHoursStart", newStart, RegistryValueKind.DWord);
                 key.SetValue("ActiveHoursEnd", newEnd, RegistryValueKind.DWord);
+            }
+            else
+            {
+                return true;
             }
 
             if (forceLogs || ((newStart - start + 24) % 24 != 1))
